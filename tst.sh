@@ -90,8 +90,8 @@ echo "WRONG\n room doesn't connected to end"
 echo "WRONG\n room doesn't connected to start"
 ./lem-in < 30_m.txt
 
-echo "OK\n"
+echo "WRONG\n dublicats room names"
 ./lem-in < 31_m.txt
 
-echo "OK\n"
+echo "OK\n dublicates room coordinates"
 ./lem-in < 32_m.txt

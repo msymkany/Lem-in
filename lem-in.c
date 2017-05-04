@@ -15,8 +15,11 @@
 int 	main(void)
 {
 	t_input		*in;
+	t_map		*map;
 
-	in = read_input();
+	init_structure(&map);
+	in = new_node();
+	read_input(&in);
 
 	return (0);
 }

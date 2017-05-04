@@ -12,16 +12,25 @@
 
 #include "lem_in.h"
 
-t_input		*read_input(void)
+t_input		*read_input(t_input **in)
 {
 	t_input		*in;
 	char 		*line;
 
-	while (get_next_line(0, &line))
+	while (get_next_line(0, &(*in)->line))
 	{
-		if (line[0] == '#')
+		if ((*in)->line[0] == '#')
+		{
 			check_comment();
-		ft_strdel(&line);
+			push_to_list(in);
+		}
+		else if (!(**in)->line)
+			ft_error();
+		else
+		{
+			get_n_ants((*in)->line);
+
+		}
 	}
 	return (in);
 }
