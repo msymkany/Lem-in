@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.c                                           :+:      :+:    :+:   */
+/*   test_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msymkany <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:10:34 by msymkany          #+#    #+#             */
-/*   Updated: 2017/04/28 17:10:42 by msymkany         ###   ########.fr       */
+/*   Created: 2017/05/06 15:32:51 by msymkany          #+#    #+#             */
+/*   Updated: 2017/05/06 15:32:53 by msymkany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int 	main(void)
+void		print_input(t_input *head)
 {
-	t_input		*in;
-	t_map		*map;
-
-	in = NULL;
-	map = NULL;
-	init_structure(&map);
-//	in = new_node();
-	read_input(&in, map);
-//	while (1)
-//		;
-	return (0);
+	while (head)
+	{
+		ft_printf("%s\n", head->line);
+		head = head->next;
+	}
 }
+

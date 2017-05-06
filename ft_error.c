@@ -15,5 +15,7 @@
 void	ft_error(void)
 {
 	write(1, "ERROR\n", ft_strlen("ERROR\n"));
+//	while (1)
+//		;
 	exit(1);
 }

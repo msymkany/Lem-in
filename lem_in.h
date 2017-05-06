@@ -53,8 +53,12 @@ typedef struct		s_map
 
 }					t_map;
 
-t_input		*read_input(t_input **in, t_map *map);
-void		check_comment_ant_num_block(char *line);
+void		read_input(t_input **in, t_map *map);
+void		validate_ant_num(t_input **in, t_map *map);
+void		check_command_in_wrong_block(char *line);
+void		validate_rooms(t_input **in, t_map *map);
+
+void		validate_links(t_input **in, t_map *map);
 
 /*
 ** managing structures

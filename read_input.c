@@ -12,52 +12,7 @@
 
 #include "lem_in.h"
 
-void	check_comment_ant_num_block(char *line)
-{
-	if (ft_strequ(line, "##start"))
-		ft_error();
-	if (ft_strequ(line, "##end"))
-		ft_error();
-}
-
-void	get_n_ants(char *line, t_map *map)
-{
-	size_t	i;
-
-	i = 0;
-	i = ft_extract_digits(&(map)->ants_num, line, i);
-	if (!(map)->ants_num)
-		ft_error();
-	if (line[i])
-		ft_error();
-}
-
-void		validate_ant_num(t_input **in, t_map *map)
-{
-	char 		*line;
-
-	while (!map->ants_num && get_next_line(0, &line))
-	{
-		if (!line)
-			ft_error();
-		else if (line[0] == '#')
-		{
-			check_comment_ant_num_block(line);
-			push_to_input(in, line);
-		}
-		else
-		{
-			get_n_ants(line, map);
-			push_to_input(in, line);
-		}
-		ft_strdel(&line);
-	}
-	write(1, "OK ants num\n", 3); // test
-	ft_printf("%d\n", map->ants_num); // test
-	print_input(*in);  // test
-}
-
-t_input		*read_input(t_input **in, t_map *map)
+void		read_input(t_input **in, t_map *map)
 {
 	validate_ant_num(in, map);
 //	validate_rooms(in, map);
