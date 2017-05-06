@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.c                                           :+:      :+:    :+:   */
+/*   ft_isint.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msymkany <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:10:34 by msymkany          #+#    #+#             */
-/*   Updated: 2017/04/28 17:10:42 by msymkany         ###   ########.fr       */
+/*   Created: 2017/05/06 15:09:21 by msymkany          #+#    #+#             */
+/*   Updated: 2017/05/06 15:09:35 by msymkany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../includes/libft.h"
 
-int 	main(void)
+int		ft_isint(intmax_t num)
 {
-	t_input		*in;
-	t_map		*map;
-
-	in = NULL;
-	map = NULL;
-	init_structure(&map);
-//	in = new_node();
-	read_input(&in, map);
-
-	return (0);
+	if (num > 2147483647 || num < -2147483648)
+		return (0);
+	else
+		return (1);
 }

@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.c                                           :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msymkany <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:10:34 by msymkany          #+#    #+#             */
-/*   Updated: 2017/04/28 17:10:42 by msymkany         ###   ########.fr       */
+/*   Created: 2017/05/06 13:59:49 by msymkany          #+#    #+#             */
+/*   Updated: 2017/05/06 13:59:54 by msymkany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int 	main(void)
+void	ft_error(void)
 {
-	t_input		*in;
-	t_map		*map;
-
-	in = NULL;
-	map = NULL;
-	init_structure(&map);
-//	in = new_node();
-	read_input(&in, map);
-
-	return (0);
+	write(1, "ERROR\n", ft_strlen("ERROR\n"));
+	exit(1);
 }

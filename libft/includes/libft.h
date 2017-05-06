@@ -42,6 +42,7 @@ int					ft_toupper(int c);
 int					ft_tolower(int c);
 int					ft_isalpha(int c);
 int					ft_isspace(int c);
+int 				ft_isint(intmax_t num);
 char				*ft_strdup(const char *s);
 int					ft_atoi(const char *str);
 size_t				ft_strlen(const char *str);
@@ -97,5 +98,6 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+size_t				ft_extract_digits(int *res, char *str, size_t i);
 
 #endif

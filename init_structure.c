@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.c                                           :+:      :+:    :+:   */
+/*   init_structure.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msymkany <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:10:34 by msymkany          #+#    #+#             */
-/*   Updated: 2017/04/28 17:10:42 by msymkany         ###   ########.fr       */
+/*   Created: 2017/05/04 16:05:07 by msymkany          #+#    #+#             */
+/*   Updated: 2017/05/04 16:05:09 by msymkany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int 	main(void)
+void	init_structure(t_map **map)
 {
-	t_input		*in;
-	t_map		*map;
-
-	in = NULL;
-	map = NULL;
-	init_structure(&map);
-//	in = new_node();
-	read_input(&in, map);
-
-	return (0);
+	*map = (t_map *)malloc(sizeof(t_map));
+	if (!(*map))
+		ft_error();
+	(*map)->ants_num = 0;
+	(*map)->start = -1;
+	(*map)->end = -1;
+	(*map)->rooms = NULL;
 }

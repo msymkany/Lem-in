@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.c                                           :+:      :+:    :+:   */
+/*   ft_extract_digits.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msymkany <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 17:10:34 by msymkany          #+#    #+#             */
-/*   Updated: 2017/04/28 17:10:42 by msymkany         ###   ########.fr       */
+/*   Created: 2017/05/06 13:33:11 by msymkany          #+#    #+#             */
+/*   Updated: 2017/05/06 13:33:26 by msymkany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../includes/libft.h"
 
-int 	main(void)
+size_t		ft_extract_digits(int *res, char *str, size_t i)
 {
-	t_input		*in;
-	t_map		*map;
+	long int	n;
 
-	in = NULL;
-	map = NULL;
-	init_structure(&map);
-//	in = new_node();
-	read_input(&in, map);
-
-	return (0);
+	n = 0;
+	while (ft_isdigit(str[i]))
+	{
+		n = n * 10 + (str[i] - '0');
+		if (!(ft_isint(n)))
+			return (0);
+		i++;
+	}
+	*res = (int)n;
+	return (i);
 }

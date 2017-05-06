@@ -81,20 +81,22 @@ SOURCE = libft/ft_isdigit.c \
             libft/ft_lstadd.c \
             libft/ft_lstiter.c \
             libft/ft_lstmap.c \
-            libft/get_next_line.c\
-            printf/ft_printf.c\
-            printf/arg_cast_conversion.c\
-            printf/convert_digit.c\
-            printf/convert_wchar.c\
-            printf/get_mod.c\
-            printf/manage_struct.c\
-            printf/parce_it.c\
-            printf/print_char.c\
-            printf/print_it.c\
-            printf/print_order.c\
-            printf/print_str.c\
-            printf/put_txt.c\
-            printf/skip_flags.c\
+            libft/get_next_line.c \
+            libft/ft_extract_digits.c \
+            libft/ft_isint.c \
+            printf/ft_printf.c \
+            printf/arg_cast_conversion.c \
+            printf/convert_digit.c \
+            printf/convert_wchar.c \
+            printf/get_mod.c \
+            printf/manage_struct.c \
+            printf/parce_it.c \
+            printf/print_char.c \
+            printf/print_it.c \
+            printf/print_order.c \
+            printf/print_str.c \
+            printf/put_txt.c \
+            printf/skip_flags.c \
 
 OBJECTS = $(SOURCE:.c=.o)
 
