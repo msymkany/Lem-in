@@ -26,6 +26,7 @@ SOURCE = lem-in.c \
         test_print.c \
         validate_ant_num.c \
         validate_rooms.c \
+        validate_rooms_2.c \
         validate_links.c \
 
 OBJECTS = $(SOURCE:.c=.o)

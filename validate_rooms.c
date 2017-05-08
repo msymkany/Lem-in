@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-int 		check_spaces(char *line)
+static int 		check_spaces(char *line)
 {
 	int 	i;
 
@@ -28,7 +28,7 @@ int 		check_spaces(char *line)
 	return (0);
 }
 
-size_t		get_room_name(char *line, t_map *map)
+static size_t		get_room_name(char *line, t_map *map)
 {
 	size_t		j;
 
@@ -73,36 +73,6 @@ void		check_room_format(t_map *map, char *line)
 		ft_error();
 	if (line[j] != 0)
 		ft_error();
-}
-
-void		check_command(char **line, t_map *map, t_input **in)
-{
-	if (ft_strequ(*line, "##start"))
-	{
-		push_to_input(in, *line);
-		ft_strdel(line);
-		get_next_line(0, line);
-		if (*line[0] == '#')
-			ft_error();
-		else
-		{
-			check_room_format(map, *line);
-			map->start = map->rooms->num; // get_room_num(map);
-		}
-	}
-	else if (ft_strequ(*line, "##end"))
-	{
-		push_to_input(in, *line);
-		ft_strdel(line);
-		get_next_line(0, line);
-		if (*line[0] == '#')
-			ft_error();
-		else
-		{
-			check_room_format(map, *line);
-			map->end = map->rooms->num;
-		}
-	}// make the one function from 2
 }
 
 void		validate_rooms(t_input **in, t_map *map)

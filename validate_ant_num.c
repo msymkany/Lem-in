@@ -55,5 +55,5 @@ void		validate_ant_num(t_input **in, t_map *map)
 	}
 	write(1, "OK ants num\n", 12); // test
 	ft_printf("%d\n", map->ants_num); // test
-	print_input(*in);  // test
+//	print_input(*in);  // test
 }
