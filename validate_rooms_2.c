@@ -54,6 +54,35 @@ void		check_command(char **line, t_map *map, t_input **in)
 	}
 }
 
+void 	validate_room_coordinates(t_map *map)
+{
+	t_room		*ptr;
+
+	if (map->rooms->next)
+	{
+		ptr = map->rooms;
+		while ((ptr = ptr->next))
+		{
+			if (map->rooms->x == ptr->x && map->rooms->y == ptr->y)
+				ft_error();
+		}
+	}
+}
+
+void 	check_room_name_dub(t_map *map)
+{
+	t_room		*ptr;
+
+	if (map->rooms->next)
+	{
+		ptr = map->rooms;
+		while ((ptr = ptr->next))
+		{
+			if (ft_strequ(map->rooms->name, ptr->name))
+				ft_error();
+		}
+	}
+}
 
 //void		check_command(char **line, t_map *map, t_input **in)
 //{

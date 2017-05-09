@@ -92,8 +92,8 @@ void		validate_rooms(t_input **in, t_map *map)
 			check_room_format(map, line);
 			push_to_input(in, line);
 		}
-		// validate_room_coordinates
-		// check_room_name_dub
+		check_room_name_dub(map);
+		validate_room_coordinates(map);
 		ft_strdel(&line);
 	}
 	if (map->start == -1 || map->end == -1)

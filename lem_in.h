@@ -60,6 +60,8 @@ void		check_command_in_wrong_block(char *line);
 void		validate_rooms(t_input **in, t_map *map);
 void		check_room_format(t_map *map, char *line);
 void		check_command(char **line, t_map *map, t_input **in);
+void		check_room_name_dub(t_map *map);
+void		validate_room_coordinates(t_map *map);
 
 void		validate_links(t_input **in, t_map *map);
 /*
