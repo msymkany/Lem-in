@@ -41,7 +41,7 @@ t_room		*new_node_room(void)
 
 	new = (t_room *)malloc(sizeof(t_room));
 	if (!new)
-		ft_error();
+		ft_error("malloc error, no allocation");
 	else
 	{
 		new->next = NULL;

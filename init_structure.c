@@ -16,7 +16,7 @@ void	init_structure(t_map **map)
 {
 	*map = (t_map *)malloc(sizeof(t_map));
 	if (!(*map))
-		ft_error();
+		ft_error("malloc error, no allocation");
 	(*map)->ants_num = 0;
 	(*map)->start = -1;
 	(*map)->end = -1;

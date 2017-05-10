@@ -12,9 +12,11 @@
 
 #include "lem_in.h"
 
-void	ft_error(void)
+void	ft_error(char *str)
 {
-	write(1, "ERROR\n", ft_strlen("ERROR\n"));
+	write(1, "\033[;35mERROR: ", ft_strlen("\033[;35mERROR: "));
+	write(1, str, ft_strlen(str));
+	write(1, "\033[0m\n", 5);
 //	while (1)
 //		;
 	exit(1);

@@ -14,13 +14,10 @@
 
 static void		get_room_num(t_map *map)
 {
-	t_room		*ptr;
-
 	if (map->rooms->next == NULL)
 		map->rooms->num = 0;
 	else
 	{
-//		ptr = map->rooms;
 		map->rooms->num = ++map->rooms->next->num;
 	}
 
@@ -32,7 +29,7 @@ static void		check_command_2(char **line, t_map *map, t_input **in)
 	ft_strdel(line);
 	get_next_line(0, line);
 	if (*line[0] == '#')
-		ft_error();
+		ft_error("comment after command ##start or ##end");
 	else
 	{
 		check_room_format(map, *line);
@@ -44,11 +41,15 @@ void		check_command(char **line, t_map *map, t_input **in)
 {
 	if (ft_strequ(*line, "##start"))
 	{
+		if (map->start > -1)
+			ft_error("double ##start");
 		check_command_2(line, map, in);
 		map->start = map->rooms->num;
 	}
 	else if (ft_strequ(*line, "##end"))
 	{
+		if (map->end > -1)
+			ft_error("double ##end");
 		check_command_2(line, map, in);
 		map->end = map->rooms->num;
 	}
@@ -58,14 +59,11 @@ void 	validate_room_coordinates(t_map *map)
 {
 	t_room		*ptr;
 
-	if (map->rooms->next)
+	ptr = map->rooms;
+	while ((ptr = ptr->next))
 	{
-		ptr = map->rooms;
-		while ((ptr = ptr->next))
-		{
-			if (map->rooms->x == ptr->x && map->rooms->y == ptr->y)
-				ft_error();
-		}
+		if (map->rooms->x == ptr->x && map->rooms->y == ptr->y)
+			ft_error("duplicates of room coordinates");
 	}
 }
 
@@ -73,14 +71,11 @@ void 	check_room_name_dub(t_map *map)
 {
 	t_room		*ptr;
 
-	if (map->rooms->next)
+	ptr = map->rooms;
+	while ((ptr = ptr->next))
 	{
-		ptr = map->rooms;
-		while ((ptr = ptr->next))
-		{
-			if (ft_strequ(map->rooms->name, ptr->name))
-				ft_error();
-		}
+		if (ft_strequ(map->rooms->name, ptr->name))
+			ft_error("duplicates of room name");
 	}
 }
 

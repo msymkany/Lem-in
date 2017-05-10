@@ -50,7 +50,7 @@ typedef struct		s_map
 	int		start;
 	int 	end;
 	t_room	*rooms;
-
+	int 	**links;
 }					t_map;
 
 void		read_input(t_input **in, t_map *map);
@@ -75,7 +75,7 @@ t_room		*new_node_room(void);
 void		push_to_room(t_room **head);
 
 
-void		ft_error(void);
+void		ft_error(char *str);
 
 // test
 void		print_input(t_input *head);

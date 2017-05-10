@@ -20,3 +20,4 @@ void		print_input(t_input *head)
 		head = head->next;
 	}
 }
+
