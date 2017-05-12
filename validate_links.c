@@ -12,32 +12,93 @@
 
 #include "lem_in.h"
 
-void		get_links(t_map *map, char *line)
+static int		check_link_name(char *str, t_map *map)
+{
+	t_room		*ptr;
+
+	ptr = map->rooms;
+	while (ptr)
+	{
+		if (ft_strequ(ptr->name, str))
+			return (ptr->num);
+		ptr = ptr->next;
+	}
+	ft_error("no match between link and room names");
+	return (0);
+}
+
+static void		get_links(t_map *map, char *line)
 {
 	char		**link;
 	size_t		i;
-	int		*link_1;
-	int		*link_2;
+	int		link_1;
+	int		link_2;
 
-	link_1 = 0;
-	link_2 = 0;
 	i = 0;
 	link = ft_strsplit(line, '-');
 	while (link[i])
 		i++;
 	if (i != 2)
 		ft_error("wrong link format");
-	
-
+	link_1 = check_link_name(link[0], map);
+	link_2 = check_link_name(link[1], map);
+	if (link_1 != link_2)
+	{
+		map->links[link_1][link_2] = '1';
+		map->links[link_2][link_1] = '1';
+	}
 }
 
-void		validate_links(t_input **in, t_map *map)
+static void		init_adjacency_matrix(t_map *map)
+{
+	int 	i;
+	int 	j;
+
+	i = map->rooms->num + 1;
+	j = 0;
+	map->links = (char **)malloc(sizeof(char*) * (i + 1));
+	if (!map->links)
+		ft_error("malloc error, no allocation");
+	map->links[i] = NULL;
+	while (j < i)
+	{
+		map->links[j] = ft_strnew(i);
+		ft_memset(map->links[j], '0', i);
+		j++;
+	}
+}
+
+static void		check_start_end_links(char *start, char *end)
+{
+	size_t		i;
+
+	i = 0;
+	while (start[i])
+	{
+		if (start[i] == '1')
+			break ;
+		i++;
+	}
+	if (start[i] != '1')
+		ft_error("no link to start room");
+	i = 0;
+	while (end[i])
+	{
+		if (end[i] == '1')
+			break ;
+		i++;
+	}
+	if (end[i] != '1')
+		ft_error("no link to end room");
+}
+
+void			validate_links(t_input **in, t_map *map)
 {
 	char 	*line;
-//	int 	iterations;
+	size_t		i;
 
-//	iterations = 1;
 	line = NULL;
+	init_adjacency_matrix(map);
 	get_links(map, (*in)->line);
 	while (get_next_line(0, &line))
 	{
@@ -55,7 +116,10 @@ void		validate_links(t_input **in, t_map *map)
 		}
 		ft_strdel(&line);
 	}
-	write(1, "OK ants num\n", 3); // test
-	ft_printf("%d\n", map->ants_num); // test
+	ft_strdel(&line);
+	check_start_end_links(map->links[map->start], map->links[map->end]);
+
+	write(1, "OK links\n", 9); // test
+	print_arr(map->links, map->rooms->num + 1);
 	print_input(*in);  // test
 }

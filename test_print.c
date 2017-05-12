@@ -21,3 +21,22 @@ void		print_input(t_input *head)
 	}
 }
 
+void	print_arr(char **map, int row)
+{
+	int 	i;
+
+	i = 0;
+	while (i < row)
+	{
+		ft_printf("%s\n", map[i++]);
+	}
+}
+
+void		print_rooms(t_room *head)
+{
+	while (head)
+	{
+		ft_printf("name: %s, num: %d\n", head->name, head->num);
+		head = head->next;
+	}
+}

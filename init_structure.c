@@ -21,4 +21,5 @@ void	init_structure(t_map **map)
 	(*map)->start = -1;
 	(*map)->end = -1;
 	(*map)->rooms = NULL;
+	(*map)->links = NULL;
 }

@@ -16,5 +16,5 @@ void		read_input(t_input **in, t_map *map)
 {
 	validate_ant_num(in, map);
 	validate_rooms(in, map);
-//	validate_links(in, map);
+	validate_links(in, map);
 }

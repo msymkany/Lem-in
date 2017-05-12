@@ -12,13 +12,13 @@
 
 #include "lem_in.h"
 
-static void		get_room_num(t_map *map)
+void		get_room_num(t_map *map)
 {
 	if (map->rooms->next == NULL)
 		map->rooms->num = 0;
 	else
 	{
-		map->rooms->num = ++map->rooms->next->num;
+		map->rooms->num = map->rooms->next->num + 1;
 	}
 
 }
