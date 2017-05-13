@@ -12,6 +12,13 @@
 
 #include "lem_in.h"
 
+void		read_input(t_input **in, t_map *map)
+{
+	validate_ant_num(in, map);
+	validate_rooms(in, map);
+	validate_links(in, map);
+}
+
 int 	main(void)
 {
 	t_input		*in;
@@ -20,8 +27,8 @@ int 	main(void)
 	in = NULL;
 	map = NULL;
 	init_structure(&map);
-//	in = new_node();
 	read_input(&in, map);
+	delete_structure(&map);
 //	while (1)
 //		;
 	return (0);

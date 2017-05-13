@@ -23,3 +23,37 @@ void	init_structure(t_map **map)
 	(*map)->rooms = NULL;
 	(*map)->links = NULL;
 }
+
+void		init_adjacency_matrix(t_map *map)
+{
+	int 	i;
+	int 	j;
+
+	i = map->rooms->num + 1;
+	j = 0;
+	map->links = (char **)malloc(sizeof(char*) * (i + 1));
+	if (!map->links)
+		ft_error("malloc error, no allocation");
+	map->links[i] = NULL;
+	while (j < i)
+	{
+		map->links[j] = ft_strnew(i);
+		ft_memset(map->links[j], '0', i);
+		j++;
+	}
+}
+
+void 	delete_structure(t_map **map)
+{
+	t_room		*ptr;
+
+	if ((*map)->rooms)
+	{
+		ptr = (*map)->rooms;
+		while ((ptr = ptr->next))
+		{
+			if (ptr->name)
+				ft_strdel(&ptr->name);
+		}
+	}
+}

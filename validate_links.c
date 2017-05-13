@@ -47,25 +47,13 @@ static void		get_links(t_map *map, char *line)
 		map->links[link_1][link_2] = '1';
 		map->links[link_2][link_1] = '1';
 	}
-}
-
-static void		init_adjacency_matrix(t_map *map)
-{
-	int 	i;
-	int 	j;
-
-	i = map->rooms->num + 1;
-	j = 0;
-	map->links = (char **)malloc(sizeof(char*) * (i + 1));
-	if (!map->links)
-		ft_error("malloc error, no allocation");
-	map->links[i] = NULL;
-	while (j < i)
+	i = 0;
+	while (link[i])
 	{
-		map->links[j] = ft_strnew(i);
-		ft_memset(map->links[j], '0', i);
-		j++;
+		ft_strdel(&link[i++]);
 	}
+	free(link);
+	link = NULL;
 }
 
 static void		check_start_end_links(char *start, char *end)
@@ -92,10 +80,28 @@ static void		check_start_end_links(char *start, char *end)
 		ft_error("no link to end room");
 }
 
+static void			check_way_existance(t_map *map, int	curr, int previous, char n)
+{
+	int		i;
+
+	i = 0;
+	if (curr == map->end)
+		return ;
+	while (map->links[curr][i])
+	{
+		if (map->links[curr][i] == '1' && i != previous)
+		{
+			map->links[curr][i] = n;
+			check_way_existance(map, i, curr, n + 1);
+		}
+		i++;
+	}
+	ft_error("no way from start to end");
+}
+
 void			validate_links(t_input **in, t_map *map)
 {
 	char 	*line;
-	size_t		i;
 
 	line = NULL;
 	init_adjacency_matrix(map);
@@ -118,6 +124,7 @@ void			validate_links(t_input **in, t_map *map)
 	}
 	ft_strdel(&line);
 	check_start_end_links(map->links[map->start], map->links[map->end]);
+	check_way_existance(map, map->start, map->start, '2');
 
 	write(1, "OK links\n", 9); // test
 	print_arr(map->links, map->rooms->num + 1);

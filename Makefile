@@ -6,14 +6,14 @@
 #    By: msymkany <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/28 17:05:55 by msymkany          #+#    #+#              #
-#    Updated: 2017/04/28 17:10:19 by msymkany         ###   ########.fr        #
+#    Updated: 2017/05/13 20:30:28 by msymkany         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = lem-in
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 FIL_I = ./includes/len_in.h
 INCLUDES = -I $(FIL_I)

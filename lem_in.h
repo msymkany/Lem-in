@@ -65,11 +65,13 @@ void		check_room_name_dub(t_map *map);
 void		validate_room_coordinates(t_map *map);
 
 void		validate_links(t_input **in, t_map *map);
+void		init_adjacency_matrix(t_map *map);
 /*
 ** managing structures
 */
 
 void		init_structure(t_map **map);
+void		delete_structure(t_map **map);
 t_input		*new_node_input(void);
 void		push_to_input(t_input **head, char *line);
 t_room		*new_node_room(void);

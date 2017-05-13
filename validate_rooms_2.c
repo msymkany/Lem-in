@@ -78,33 +78,3 @@ void 	check_room_name_dub(t_map *map)
 			ft_error("duplicates of room name");
 	}
 }
-
-//void		check_command(char **line, t_map *map, t_input **in)
-//{
-//	if (ft_strequ(*line, "##start"))
-//	{
-//		push_to_input(in, *line);
-//		ft_strdel(line);
-//		get_next_line(0, line);
-//		if (*line[0] == '#')
-//			ft_error();
-//		else
-//		{
-//			check_room_format(map, *line);
-//			map->start = map->rooms->num; // get_room_num(map);
-//		}
-//	}
-//	else if (ft_strequ(*line, "##end"))
-//	{
-//		push_to_input(in, *line);
-//		ft_strdel(line);
-//		get_next_line(0, line);
-//		if (*line[0] == '#')
-//			ft_error();
-//		else
-//		{
-//			check_room_format(map, *line);
-//			map->end = map->rooms->num;
-//		}
-//	}
-//}

@@ -12,9 +12,9 @@
 
 #include "lem_in.h"
 
-static int 		check_spaces(char *line)
+static int			check_spaces(char *line)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (*line)
@@ -48,13 +48,11 @@ static size_t		get_room_name(char *line, t_map *map)
 	return (j);
 }
 
-void		check_room_format(t_map *map, char *line)
+void				check_room_format(t_map *map, char *line)
 {
 	size_t		j;
 	size_t		i;
 
-	j = 0;
-	i = 0;
 	if (check_spaces(line) && line[0] != 'L')
 		j = get_room_name(line, map);
 	else
@@ -79,9 +77,9 @@ void		check_room_format(t_map *map, char *line)
 		ft_error("wrong format of room coordinates");
 }
 
-void		validate_rooms(t_input **in, t_map *map)
+void				validate_rooms(t_input **in, t_map *map)
 {
-	char 	*line;
+	char		*line;
 
 	line = NULL;
 	while (get_next_line(0, &line) && (line[0] == '#' || check_spaces(line)))
@@ -113,9 +111,9 @@ void		validate_rooms(t_input **in, t_map *map)
 	push_to_input(in, line); // last one goes to links
 	ft_strdel(&line);
 
-	write(1, "OK room\n", 8); // test
-	ft_printf("start %d\n", map->start); // test
-	ft_printf("end %d\n", map->end); // test
-//	print_input(*in);  // test
-	print_rooms(map->rooms);
+//	write(1, "OK room\n", 8); // test
+//	ft_printf("start %d\n", map->start); // test
+//	ft_printf("end %d\n", map->end); // test
+//	print_rooms(map->rooms);
+// 	print_input(*in);  // test
 }
