@@ -22,6 +22,7 @@ void	init_structure(t_map **map)
 	(*map)->end = -1;
 	(*map)->rooms = NULL;
 	(*map)->links = NULL;
+	(*map)->ways = NULL;
 }
 
 void		init_adjacency_matrix(t_map *map)

@@ -40,3 +40,21 @@ void		print_rooms(t_room *head)
 		head = head->next;
 	}
 }
+
+void		print_way(t_way *head)
+{
+	int 	i;
+
+	i = 0;
+	while (head)
+	{
+		ft_printf("step: ");
+		while (i < head->length)
+		{
+			ft_printf("%d ", head->steps[i]);
+			i++;
+		}
+		ft_printf("\nlength %d\n", head->length);
+		head = head->next;
+	}
+}

@@ -44,6 +44,13 @@ typedef	struct		s_room
 	struct s_room	*next;
 }					t_room;
 
+typedef struct		s_way
+{
+	int 			*steps;
+	int 			length;
+	struct s_way	*next;
+}					t_way;
+
 typedef struct		s_map
 {
 	int		ants_num;
@@ -51,9 +58,13 @@ typedef struct		s_map
 	int 	end;
 	t_room	*rooms;
 	char 	**links;
+	t_way	*ways;
 }					t_map;
 
-void		read_input(t_input **in, t_map *map);
+/*
+** validation
+*/
+
 void		validate_ant_num(t_input **in, t_map *map);
 void		check_command_in_wrong_block(char *line);
 
@@ -66,17 +77,23 @@ void		validate_room_coordinates(t_map *map);
 
 void		validate_links(t_input **in, t_map *map);
 void		init_adjacency_matrix(t_map *map);
+
+/*
+** main algorithm
+*/
+
+void		new_way(t_map *map, int n);
+void		write_way(t_map *map);
+
 /*
 ** managing structures
 */
 
 void		init_structure(t_map **map);
 void		delete_structure(t_map **map);
-t_input		*new_node_input(void);
 void		push_to_input(t_input **head, char *line);
-t_room		*new_node_room(void);
 void		push_to_room(t_room **head);
-
+void		push_to_way(t_way **head);
 
 void		ft_error(char *str);
 
@@ -84,5 +101,6 @@ void		ft_error(char *str);
 void		print_input(t_input *head);
 void		print_arr(char **map, int row);
 void		print_rooms(t_room *head);
+void		print_way(t_way *head);
 
 #endif

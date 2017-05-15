@@ -12,30 +12,24 @@
 
 #include "lem_in.h"
 
-t_input		*new_node_input(void)
-{
-	t_input		*new;
-
-	new = (t_input *)malloc(sizeof(t_input));
-	if (new)
-	{
-		new->next = NULL;
-		new->line = NULL;
-	}
-	return (new);
-}
-
 void		push_to_input(t_input **head, char *line)
 {
 	t_input		*new;
 
-	new = new_node_input();
+	new = (t_input *)malloc(sizeof(t_input));
+	if (!new)
+		ft_error("malloc error, no allocation");
+	else
+	{
+		new->next = NULL;
+		new->line = NULL;
+	}
 	new->line = ft_strdup(line);
 	new->next = *head;
 	*head = new;
 }
 
-t_room		*new_node_room(void)
+void		push_to_room(t_room **head)
 {
 	t_room		*new;
 
@@ -49,14 +43,23 @@ t_room		*new_node_room(void)
 		new->x = 0;
 		new->y = 0;
 	}
-	return (new);
+	new->next = *head;
+	*head = new;
 }
 
-void		push_to_room(t_room **head)
+void		push_to_way(t_way **head)
 {
-	t_room		*new;
+	t_way		*new;
 
-	new = new_node_room();
+	new = (t_way *)malloc(sizeof(t_way));
+	if (!new)
+		ft_error("malloc error, no allocation");
+	else
+	{
+		new->next = NULL;
+		new->steps = NULL;
+		new->length = 0;
+	}
 	new->next = *head;
 	*head = new;
 }
