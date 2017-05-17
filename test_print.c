@@ -45,10 +45,10 @@ void		print_way(t_way *head)
 {
 	int 	i;
 
-	i = 0;
 	while (head)
 	{
 		ft_printf("step: ");
+		i = 0;
 		while (i < head->length)
 		{
 			ft_printf("%d ", head->steps[i]);

@@ -80,36 +80,19 @@ static void		check_start_end_links(char *start, char *end)
 		ft_error("no link to end room");
 }
 
-static int			check_way_existance(t_map *map, int	curr, int previous, int n)
+static int			check_way_existance(t_map *map)
 {
-	int		i;
-
-	i = 0;
-	if (curr == map->end)
-	{
-		new_way(map, n);
-		map->links[curr][previous] = '#';
+	if (map->links[map->start][map->end] == '1')
 		return (1);
-	}
-	while (map->links[curr][i])
+	else
 	{
-		if (map->links[curr][i] == '1' && i != previous)
-		{
-			map->links[curr][i] = '#';
-			if (!check_way_existance(map, i, curr, n + 1))
-				;
-//				map->links[curr][i] = '1';
-			else
-			{
-				if (n == 1)
-					write_way(map);
-				return (1);
-			}
-		}
-		i++;
+		find_ways(map, map->start, map->start, 1);
+		if (map->ways)
+			return (1);
 	}
 	return (0);
 }
+
 
 void			validate_links(t_input **in, t_map *map)
 {
@@ -136,9 +119,9 @@ void			validate_links(t_input **in, t_map *map)
 	}
 	ft_strdel(&line);
 	check_start_end_links(map->links[map->start], map->links[map->end]);
-	if (!check_way_existance(map, map->start, map->start, 1))
+	if (!check_way_existance(map))
 		ft_error("no way from start to end");
-
+	print_way(map->ways); //test
 //	write(1, "OK links\n", 9); // test
 	print_arr(map->links, map->rooms->num + 1);
 //	print_input(*in);  // test

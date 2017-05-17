@@ -59,6 +59,7 @@ void		push_to_way(t_way **head)
 		new->next = NULL;
 		new->steps = NULL;
 		new->length = 0;
+		new->num = 0;
 	}
 	new->next = *head;
 	*head = new;

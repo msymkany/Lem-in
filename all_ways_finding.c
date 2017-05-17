@@ -19,6 +19,8 @@ void		new_way(t_map *map, int n)
 	map->ways->steps = (int *)malloc(sizeof(int) * n);
 	map->ways->steps[0] = map->start;
 	map->ways->steps[n - 1] = map->end;
+	if (map->ways->next)
+		map->ways->num = map->ways->next->num + 1;
 }
 
 void		write_way(t_map *map)
@@ -26,10 +28,12 @@ void		write_way(t_map *map)
 	int 	curr;
 	int 	i;
 	int 	j;
+	int 	l;
 
 	i = 1;
 	curr = map->start;
-	while (i < map->ways->length)
+	l = map->ways->length - 1;
+	while (i < l)
 	{
 		j = -1;
 		while (map->links[curr][++j])
@@ -41,7 +45,37 @@ void		write_way(t_map *map)
 		curr = j;
 		i++;
 	}
+}
 
-	print_way(map->ways); //test
-//	print_arr(map->links, map->rooms->num + 1); // test
+int			find_ways(t_map *map, int curr, int previous, int n)
+{
+	int		i;
+
+	i = 0;
+	if (curr == map->end)
+	{
+		new_way(map, n);
+		return (1);
+	}
+	while (map->links[curr][i])
+	{
+		if (map->links[curr][i] == '1' && i != previous)
+		{
+			map->links[curr][i] = '#';
+			if (!find_ways(map, i, curr, n + 1))
+				map->links[curr][i] = '1';
+			else
+			{
+				write_way(map);
+				map->links[curr][i] = '1';
+			}
+		}
+		i++;
+	}
+	return (0);
+}
+
+void		compose_ways(t_map *map)
+{
+
 }
