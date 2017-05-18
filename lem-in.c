@@ -28,9 +28,9 @@ int 	main(void)
 	map = NULL;
 	init_structure(&map);
 	read_input(&in, map);
-//	if (map->links[map->start][map->end] == '1')
-//		start_end_go(map);
-//	else if (map->ways->num)
+	if (map->links[map->start][map->end] == '1')
+		start_end_go(map);
+//	else if (map->ways->num && map->ants_num > 1)
 //		compose_ways(map);
 //	else
 //		ants_race(map);

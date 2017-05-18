@@ -87,7 +87,7 @@ int			find_ways(t_map *map, int curr, int previous, int n);
 void		new_way(t_map *map, int n);
 void		write_way(t_map *map);
 void		compose_ways(t_map *map);
-
+void		start_end_go(t_map *map);
 /*
 ** managing structures
 */

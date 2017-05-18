@@ -75,7 +75,70 @@ int			find_ways(t_map *map, int curr, int previous, int n)
 	return (0);
 }
 
+void		new_way_combination(t_map *map, t_way **combo)
+{
+	size_t		j;
+
+	j = 0;
+	push_to_way(combo);
+	(*combo)->length = (map->ways->num + 1);
+	(*combo)->steps = (int *)malloc(sizeof(int) * ((*combo)->length));
+	while (j < (*combo)->length)
+	{
+		(*combo)->steps[j] = j;
+		j++;
+	}
+	if ((*combo)->next)
+	(*combo)->num = (*combo)->next->num + 1;
+}
+
+int 		*get_way(t_map *map, int id)
+{
+	t_way	*ptr;
+
+	ptr = map->ways;
+	while (ptr)
+	{
+		if (ptr->num == id)
+			break ;
+		ptr = ptr->next;
+	}
+	return (ptr->steps);
+}
+
+void		find_way_combination(t_map *map, int id, t_way **combo)
+{
+	int 	i;
+	t_way	*ptr;
+	int 	*way;
+
+	i = 0;
+	way = get_way(map, id);
+	ptr = map->ways;
+	new_way_combination(map, combo);
+	while (ptr)
+	{
+		if (i < ptr->num)
+		{
+
+		}
+		i++;
+		ptr = ptr->next;
+	}
+
+}
+
 void		compose_ways(t_map *map)
 {
+	t_way	*combo;
+	int 	i;
+	int 	**ways;
+
+	i = 0;
+	while (i <= map->ways->num)
+	{
+		find_way_combination(map, i, &combo);
+		i++;
+	}
 
 }
