@@ -58,3 +58,21 @@ void		print_way(t_way *head)
 		head = head->next;
 	}
 }
+
+void	print_int_arr(int **map, int row, int col)
+{
+	size_t 	i;
+	size_t 	j;
+
+	i = 0;
+	while (i < row)
+	{
+		j = 0;
+		while (j < col)
+		{
+			ft_printf("%4d", map[i][j++]);
+		}
+		ft_printf("\n");
+		i++;
+	}
+}

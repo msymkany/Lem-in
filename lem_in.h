@@ -49,8 +49,17 @@ typedef struct		s_way
 	int 			*steps;
 	int 			length;
 	int 			num;
+	int				second;
+	int				penalt;
 	struct s_way	*next;
 }					t_way;
+
+typedef struct		s_combo
+{
+	int				*way_combo;
+	int				sum_ways;
+	int 			sum_steps;
+}					t_combo;
 
 typedef struct		s_map
 {
@@ -82,16 +91,15 @@ void		init_adjacency_matrix(t_map *map);
 /*
 ** main algorithm
 */
-
 int			find_ways(t_map *map, int curr, int previous, int n);
 void		new_way(t_map *map, int n);
 void		write_way(t_map *map);
 void		compose_ways(t_map *map);
 void		start_end_go(t_map *map);
+
 /*
 ** managing structures
 */
-
 void		init_structure(t_map **map);
 void		delete_structure(t_map **map);
 void		push_to_input(t_input **head, char *line);
@@ -105,5 +113,6 @@ void		print_input(t_input *head);
 void		print_arr(char **map, int row);
 void		print_rooms(t_room *head);
 void		print_way(t_way *head);
+void		print_int_arr(int **map, int row, int col);
 
 #endif
