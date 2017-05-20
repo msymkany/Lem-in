@@ -84,6 +84,7 @@ SOURCE = libft/ft_isdigit.c \
             libft/get_next_line.c \
             libft/ft_extract_digits.c \
             libft/ft_isint.c \
+            libft/ft_int_strnew.c \
             printf/ft_printf.c \
             printf/arg_cast_conversion.c \
             printf/convert_digit.c \

@@ -20,7 +20,6 @@ void		get_room_num(t_map *map)
 	{
 		map->rooms->num = map->rooms->next->num + 1;
 	}
-
 }
 
 static void		check_command_2(char **line, t_map *map, t_input **in)

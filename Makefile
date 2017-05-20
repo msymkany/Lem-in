@@ -30,6 +30,7 @@ SOURCE = lem-in.c \
         validate_links.c \
         all_ways_finding.c \
         ants_race.c \
+        compose_ways.c \
 
 OBJECTS = $(SOURCE:.c=.o)
 
