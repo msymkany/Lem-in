@@ -89,6 +89,8 @@ void				validate_rooms(t_input **in, t_map *map)
 			check_command(&line, map, in);
 			push_to_input(in, line);
 		}
+		else if (line[0] == '#')
+			push_to_input(in, line);
 		else
 		{
 			check_room_format(map, line);
@@ -111,9 +113,9 @@ void				validate_rooms(t_input **in, t_map *map)
 	push_to_input(in, line); // last one goes to links
 	ft_strdel(&line);
 
-//	write(1, "OK room\n", 8); // test
-//	ft_printf("start %d\n", map->start); // test
-//	ft_printf("end %d\n", map->end); // test
-//	print_rooms(map->rooms);
+	write(1, "OK room\n", 8); // test
+	ft_printf("start %d\n", map->start); // test
+	ft_printf("end %d\n", map->end); // test
+	print_rooms(map->rooms);
 // 	print_input(*in);  // test
 }

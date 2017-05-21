@@ -38,20 +38,25 @@ void		write_way(t_map *map)
 	while (i < l)
 	{
 		j = -1;
-		while (map->links[curr][++j])
+		while (map->links[curr] && map->links[curr][++j])
 		{
 			if (map->links[curr][j] == '#')
+			{
+				map->ways->steps[i] = j;
+				curr = j;
 				break ;
+			}
 		}
-		map->ways->steps[i] = j;
-		curr = j;
 		i++;
 	}
 	map->ways->second = map->ways->steps[1];
 	map->ways->penalt = map->ways->steps[l - 1];
+
+//	print_arr(map->links, map->rooms->num + 1);   //test
+//	ft_printf("\n -------------------------------------- \n"); //test
 }
 
-int			find_ways(t_map *map, int curr, int previous, int n)
+int			find_ways(t_map *map, int curr, int n)
 {
 	int		i;
 
@@ -63,10 +68,10 @@ int			find_ways(t_map *map, int curr, int previous, int n)
 	}
 	while (map->links[curr][i])
 	{
-		if (map->links[curr][i] == '1' && i != previous)
+		if (map->links[curr][i] == '1' && !(ft_strchr(map->links[i], '#')))
 		{
 			map->links[curr][i] = '#';
-			if (!find_ways(map, i, curr, n + 1))
+			if (!find_ways(map, i, n + 1))
 				map->links[curr][i] = '1';
 			else
 			{

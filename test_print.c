@@ -47,6 +47,7 @@ void		print_way(t_way *head)
 
 	while (head)
 	{
+		ft_printf("%d way\n", head->num);
 		ft_printf("step: ");
 		i = 0;
 		while (i < head->length)
