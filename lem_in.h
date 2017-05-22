@@ -94,8 +94,9 @@ void		init_adjacency_matrix(t_map *map);
 int			find_ways(t_map *map, int curr, int n);
 void		new_way(t_map *map, int n);
 void		write_way(t_map *map);
-void		compose_ways(t_map *map);
 void		start_end_go(t_map *map);
+void		compose_ways(t_map *map);
+void		find_shortest_way(int **tab, int l, t_combo *com);
 
 /*
 ** managing structures
@@ -105,7 +106,9 @@ void		delete_structure(t_map **map);
 void		push_to_input(t_input **head, char *line);
 void		push_to_room(t_room **head);
 void		push_to_way(t_way **head);
-
+int			**fill_in_tab(t_map *map);
+int 		**init_combo_matrix(int	ways);
+void		free_tabs(int **tab, int **combo, int l);
 void		ft_error(char *str);
 
 // test

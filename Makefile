@@ -31,6 +31,8 @@ SOURCE = lem-in.c \
         all_ways_finding.c \
         ants_race.c \
         compose_ways.c \
+        compose_ways_2.c \
+        find_best_way_combo.c \
 
 OBJECTS = $(SOURCE:.c=.o)
 

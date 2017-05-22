@@ -30,14 +30,14 @@ int 	main(void)
 	read_input(&in, map);
 	if (map->links[map->start][map->end] == '1')
 		start_end_go(map);
-	else if (map->ways->num && map->ants_num > 1)
+	else if (map->ways->num) //&& map->ants_num > 1)
 		compose_ways(map);
 //	else if (map->ants_num == 1)
 //		find_shortest_way(map);
 //	else
 //		ants_race(map);
 	delete_structure(&map);
-	while (1)
-		;
+//	while (1)
+//		;
 	return (0);
 }
