@@ -68,10 +68,15 @@ void	print_int_arr(int **map, int row, int col)
 	i = 0;
 	while (i < row)
 	{
-		j = 0;
-		while (j < col)
+		if (!map[i])
+			ft_printf("%s", map[i]);
+		else
 		{
-			ft_printf("%4d", map[i][j++]);
+			j = 0;
+			while (j < col)
+			{
+				ft_printf("%4d", map[i][j++]);
+			}
 		}
 		ft_printf("\n");
 		i++;
