@@ -91,15 +91,14 @@ void		compose_ways(t_map *map)
 
 	i = 0;
 	tab = fill_in_tab(map);
-	if (!(com = (t_combo *)malloc(sizeof(t_combo))))
-		ft_error("malloc error, no allocation");
-	find_shortest_way(tab, map->ways->num, com);
-	if (map->ants_num == 1)
+	print_int_arr(tab, 3, map->ways->num + 1);   // test
+	com = find_shortest_way(tab, map->ways->num, map->ants_num);
+	ft_printf("shortest way %d\n", com->way_combo[0]); // test
+//	if (map->ants_num == 1)
 //		ants_race(map, com);
-	else
+//	else
 	{
 		combo = init_combo_matrix(map->ways->num + 1);
-		print_int_arr(tab, 3, map->ways->num + 1);   // test
 		ft_printf("\n -------------------------------------- \n"); // test
 		while (i < map->ways->num)
 		{
@@ -107,6 +106,7 @@ void		compose_ways(t_map *map)
 			i++;
 		}
 		print_int_arr(combo, map->ways->num + 1, map->ways->num + 1);   // test
+		find_best_combo(tab, combo, map, com);
 //		ants_race(map, com);
 	}
 	free_tabs(tab, combo, map->ways->num);

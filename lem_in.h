@@ -59,6 +59,8 @@ typedef struct		s_combo
 	int				*way_combo;
 	int				sum_ways;
 	int 			sum_steps;
+	int 			index;
+	int 			ant_num;
 }					t_combo;
 
 typedef struct		s_map
@@ -96,8 +98,8 @@ void		new_way(t_map *map, int n);
 void		write_way(t_map *map);
 void		start_end_go(t_map *map);
 void		compose_ways(t_map *map);
-void		find_shortest_way(int **tab, int l, t_combo *com);
-
+t_combo		*find_shortest_way(int **tab, int l, int ants);
+void		find_best_combo(int **tab, int **combo, t_map *map, t_combo *com);
 /*
 ** managing structures
 */
