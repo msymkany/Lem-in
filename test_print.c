@@ -82,3 +82,19 @@ void	print_int_arr(int **map, int row, int col)
 		i++;
 	}
 }
+
+void 	print_combo(t_combo *com)
+{
+	int 	i;
+
+	i = 0;
+	ft_printf("way combination\n");
+	while (com->way_combo[i] != -1)
+	{
+		ft_printf("%d ", com->way_combo[i++]);
+	}
+	ft_printf("\nsum of ways: %d\n", com->sum_ways);
+	ft_printf("sum of steps: %d\n", com->sum_steps);
+	ft_printf("index: %d\n", com->index);
+	ft_printf("ant num: %d\n", com->ant_num);
+}

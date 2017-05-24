@@ -12,54 +12,6 @@
 
 #include "lem_in.h"
 
-t_combo		*find_shortest_way(int **tab, int l, int ants)
-{
-	int 		i;
-	t_combo		*com;
-
-	i = 1;
-	if (!(com = (t_combo *)malloc(sizeof(t_combo))))
-		ft_error("malloc error, no allocation");
-	com->way_combo = ft_int_strnew(l + 1, -1);
-	com->way_combo[0] = 0;
-	com->sum_ways = 1;
-	com->sum_steps = tab[2][0];
-	com->ant_num = ants;
-	while (i <= l)
-	{
-		if (tab[2][i] < com->sum_steps)
-		{
-			com->sum_steps = tab[2][i];
-			com->way_combo[0] = i;
-		}
-		i++;
-	}
-	com->index = ants + com->sum_steps;
-//	ft_printf("shortest way %d\n", com->way_combo[0]); // test
-	return (com);
-}
-
-int 		check_intersection(int **combo, int *set, int s, int way_2)
-{
-	int 	i;
-	int 	j;
-
-	i = 0;
-	while (i < s)
-	{
-		j = 0;
-		while (combo[way_2][j])
-		{
-			if (combo[way_2][j] == set[i])
-				break ;
-		}
-		if (!combo[i][j])
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 int			find_index(t_combo *set, int steps, int way, int s)
 {
 	int 	new_step_sum;
@@ -78,7 +30,28 @@ int			find_index(t_combo *set, int steps, int way, int s)
 	return (s);
 }
 
-int			find_combo(int **tab, int **combo, int i, t_combo *set)
+int 		check_intersection(int **combo, int *set, int s, int way_2)
+{
+	int 	i;
+	int 	j;
+
+	i = 0;
+	while (i < s)
+	{
+		j = 0;
+		while (combo[way_2][j] != -1)
+		{
+			if (combo[way_2][j] == set[i])
+				break ;
+		}
+		if (combo[way_2][j] == -1)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+t_combo		*find_combo(int **tab, int **combo, int i, t_combo *set)
 {
 	int 	j;
 	int 	s;
@@ -91,7 +64,7 @@ int			find_combo(int **tab, int **combo, int i, t_combo *set)
 	set->sum_ways = 2;
 	set->sum_steps = tab[2][i] + tab[2][combo[i][0]];
 	set->index = (set->sum_steps + set->ant_num) / 2;
-	while (combo[i][j])
+	while (combo[i][j] != -1)
 	{
 		current = combo[i][j];
 		if (check_intersection(combo, set->way_combo, s, combo[i][j]))
@@ -100,7 +73,28 @@ int			find_combo(int **tab, int **combo, int i, t_combo *set)
 		}
 		j++;
 	}
-	return (set->index);
+	return (set);
+}
+
+void		compare_combo(t_combo *set, t_combo *com)
+{
+	int 	i;
+
+	i = 0;
+	if (set->index < com->index)
+	{
+		while (set->way_combo[i] != -1)
+		{
+			com->way_combo[i] = set->way_combo[i];
+			i++;
+		}
+		com->sum_ways = set->sum_ways;
+		com->sum_steps = set->sum_steps;
+		com->index = set->index;
+		i = 0;
+	}
+	while (set->way_combo[i] != -1)
+		set->way_combo[i++] = -1;
 }
 
 void		find_best_combo(int **tab, int **combo, t_map *map, t_combo *com)
@@ -117,7 +111,7 @@ void		find_best_combo(int **tab, int **combo, t_map *map, t_combo *com)
 	{
 		if (combo[i])
 		{
-			find_combo(tab, combo, i, set);
+			set = find_combo(tab, combo, i, set);
 			compare_combo(set, com);
 		}
 		i++;

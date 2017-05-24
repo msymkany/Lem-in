@@ -119,5 +119,6 @@ void		print_arr(char **map, int row);
 void		print_rooms(t_room *head);
 void		print_way(t_way *head);
 void		print_int_arr(int **map, int row, int col);
+void		print_combo(t_combo *com);
 
 #endif

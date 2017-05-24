@@ -82,6 +82,32 @@ void		find_way_combination(t_map *map, int id, int **tab, int **combo)
 	}
 }
 
+t_combo		*find_shortest_way(int **tab, int l, int ants)
+{
+	int 		i;
+	t_combo		*com;
+
+	i = 1;
+	if (!(com = (t_combo *)malloc(sizeof(t_combo))))
+		ft_error("malloc error, no allocation");
+	com->way_combo = ft_int_strnew(l + 1, -1);
+	com->way_combo[0] = 0;
+	com->sum_ways = 1;
+	com->sum_steps = tab[2][0];
+	com->ant_num = ants;
+	while (i <= l)
+	{
+		if (tab[2][i] < com->sum_steps)
+		{
+			com->sum_steps = tab[2][i];
+			com->way_combo[0] = i;
+		}
+		i++;
+	}
+	com->index = ants + com->sum_steps;
+	return (com);
+}
+
 void		compose_ways(t_map *map)
 {
 	int			**combo;
@@ -107,6 +133,7 @@ void		compose_ways(t_map *map)
 		}
 		print_int_arr(combo, map->ways->num + 1, map->ways->num + 1);   // test
 		find_best_combo(tab, combo, map, com);
+		print_combo(com);
 //		ants_race(map, com);
 	}
 	free_tabs(tab, combo, map->ways->num);
