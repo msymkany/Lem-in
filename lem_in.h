@@ -93,7 +93,7 @@ void		init_adjacency_matrix(t_map *map);
 /*
 ** main algorithm
 */
-int			find_ways(t_map *map, int curr, int n);
+int			find_ways(t_map *map, int curr, int n, int max);
 void		new_way(t_map *map, int n);
 void		write_way(t_map *map);
 void		start_end_go(t_map *map);

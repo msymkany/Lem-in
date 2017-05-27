@@ -82,11 +82,14 @@ static void		check_start_end_links(char *start, char *end)
 
 static int			check_way_existance(t_map *map)
 {
+	int		max_ways;
+
+	max_ways = (map->rooms->num + 1) * (map->rooms->num + 1);
 	if (map->links[map->start][map->end] == '1')
 		return (1);
 	else
 	{
-		find_ways(map, map->start, 1);
+		find_ways(map, map->start, 1, 0);
 		if (map->ways)
 			return (1);
 	}

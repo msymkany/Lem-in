@@ -56,11 +56,13 @@ void		write_way(t_map *map)
 //	ft_printf("\n -------------------------------------- \n"); //test
 }
 
-int			find_ways(t_map *map, int curr, int n)
+int			find_ways(t_map *map, int curr, int n, int max)
 {
 	int		i;
 
 	i = 0;
+//	if (map->ways && map->ways->num == max)
+//		return (0);
 	if (curr == map->end)
 	{
 		new_way(map, n);
@@ -68,10 +70,15 @@ int			find_ways(t_map *map, int curr, int n)
 	}
 	while (map->links[curr][i])
 	{
+		if (map->links[curr][map->end] == '1' && !max)
+		{
+			i = map->end;
+			max = 1;
+		}
 		if (map->links[curr][i] == '1' && !(ft_strchr(map->links[i], '#')))
 		{
 			map->links[curr][i] = '#';
-			if (!find_ways(map, i, n + 1))
+			if (!find_ways(map, i, n + 1, max))
 				map->links[curr][i] = '1';
 			else
 			{

@@ -19,7 +19,6 @@ FIL_I = ./includes/len_in.h
 INCLUDES = -I $(FIL_I)
 
 SOURCE = lem-in.c \
-        read_input.c \
         ft_error.c \
         managing_lists.c \
         init_structure.c \

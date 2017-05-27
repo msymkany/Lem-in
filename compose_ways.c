@@ -59,7 +59,8 @@ void		find_way_combination(t_map *map, int id, int **tab, int **combo)
 	int 	j;
 	int 	l;
 
-	i = id + 1;
+//	i = id + 1;
+	i = 0;
 	j = 0;
 	l = 0;
 	while (i <= map->ways->num)
@@ -72,10 +73,13 @@ void		find_way_combination(t_map *map, int id, int **tab, int **combo)
 					combo[id] = ft_int_strnew((size_t)map->ways->num + 1, -1);
 				if (!combo[i])
 					combo[i] = ft_int_strnew((size_t)map->ways->num + 1, -1);
-				while (combo[i][l] != -1)
-					l++;
 				combo[id][j++] = i;
-				combo[i][l] = id;
+				if (i > id)
+				{
+					while (combo[i][l] != -1)
+						l++;
+					combo[i][l] = id;
+				}
 			}
 		}
 		i++;
@@ -90,7 +94,7 @@ t_combo		*find_shortest_way(int **tab, int l, int ants)
 	i = 1;
 	if (!(com = (t_combo *)malloc(sizeof(t_combo))))
 		ft_error("malloc error, no allocation");
-	com->way_combo = ft_int_strnew(l + 1, -1);
+	com->way_combo = ft_int_strnew(l + 2, -1);
 	com->way_combo[0] = 0;
 	com->sum_ways = 1;
 	com->sum_steps = tab[2][0];

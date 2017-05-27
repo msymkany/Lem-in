@@ -43,6 +43,7 @@ int 		check_intersection(int **combo, int *set, int s, int way_2)
 		{
 			if (combo[way_2][j] == set[i])
 				break ;
+			j++;
 		}
 		if (combo[way_2][j] == -1)
 			return (0);
@@ -105,7 +106,7 @@ void		find_best_combo(int **tab, int **combo, t_map *map, t_combo *com)
 	i = 0;
 	if (!(set = (t_combo *)malloc(sizeof(t_combo))))
 		ft_error("malloc error, no allocation");
-	set->way_combo = ft_int_strnew(map->ways->num + 1, -1);
+	set->way_combo = ft_int_strnew(map->ways->num + 2, -1);
 	set->ant_num = map->ants_num;
 	while (i <= map->ways->num)
 	{
