@@ -12,6 +12,32 @@
 
 #include "lem_in.h"
 
+void		print_input(t_input *head)
+{
+	t_input		*ptr;
+	int 		i;
+	int 		j;
+
+	i = 0;
+	j = 0;
+	ptr = head;
+	while (ptr)
+	{
+		ptr = ptr->next;
+		i++;
+	}
+	while (i--)
+	{
+		ptr = head;
+		j = i;
+		while (j--)
+		{
+			ptr = ptr->next;
+		}
+		ft_printf("%s\n", ptr->line);
+	}
+}
+
 void		read_input(t_input **in, t_map *map)
 {
 	validate_ant_num(in, map);
@@ -28,6 +54,7 @@ int 	main(void)
 	map = NULL;
 	init_structure(&map);
 	read_input(&in, map);
+//	print_input(in);
 	if (map->links[map->start][map->end] == '1')
 		start_end_go(map);
 	else if (map->ways->num)

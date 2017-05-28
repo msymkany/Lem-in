@@ -76,7 +76,6 @@ typedef struct		s_map
 /*
 ** validation
 */
-
 void		validate_ant_num(t_input **in, t_map *map);
 void		check_command_in_wrong_block(char *line);
 
@@ -89,7 +88,6 @@ void		validate_room_coordinates(t_map *map);
 
 void		validate_links(t_input **in, t_map *map);
 void		init_adjacency_matrix(t_map *map);
-
 /*
 ** main algorithm
 */
@@ -100,6 +98,7 @@ void		start_end_go(t_map *map);
 void		compose_ways(t_map *map);
 t_combo		*find_shortest_way(int **tab, int l, int ants);
 void		find_best_combo(int **tab, int **combo, t_map *map, t_combo *com);
+void		ants_race(t_map *map, t_combo *com, int **tab);
 /*
 ** managing structures
 */

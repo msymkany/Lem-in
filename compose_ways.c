@@ -124,9 +124,9 @@ void		compose_ways(t_map *map)
 	print_int_arr(tab, 3, map->ways->num + 1);   // test
 	com = find_shortest_way(tab, map->ways->num, map->ants_num);
 	ft_printf("shortest way %d\n", com->way_combo[0]); // test
-//	if (map->ants_num == 1)
-//		ants_race(map, com);
-//	else
+	if (map->ants_num == 1)
+		ants_race(map, com, tab);
+	else
 	{
 		combo = init_combo_matrix(map->ways->num + 1);
 		ft_printf("\n -------------------------------------- \n"); // test
@@ -138,7 +138,7 @@ void		compose_ways(t_map *map)
 		print_int_arr(combo, map->ways->num + 1, map->ways->num + 1);   // test
 		find_best_combo(tab, combo, map, com);
 		print_combo(com);
-//		ants_race(map, com);
+		ants_race(map, com, tab);
 	}
 	free_tabs(tab, combo, map->ways->num);
 }

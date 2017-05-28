@@ -12,15 +12,6 @@
 
 #include "lem_in.h"
 
-void		print_input(t_input *head)
-{
-	while (head)
-	{
-		ft_printf("%s\n", head->line);
-		head = head->next;
-	}
-}
-
 void	print_arr(char **map, int row)
 {
 	int 	i;
