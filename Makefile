@@ -29,6 +29,7 @@ SOURCE = lem-in.c \
         validate_links.c \
         all_ways_finding.c \
         ants_race.c \
+        ants_race_2.c \
         compose_ways.c \
         compose_ways_2.c \
         find_best_way_combo.c \

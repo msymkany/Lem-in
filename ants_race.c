@@ -61,25 +61,13 @@ void		sort_ways_in_combination(t_combo *com, int **tab)
 
 void		ants_race(t_map *map, t_combo *com, int **tab)
 {
-	int 	i = 0; // test
-	int 	j = 0;
-
-//	tab[2][0] = 6; //test
+	t_race		**race;
+// tab[2][0] = 6; //test
 //	tab[2][3] = 3; //test
 	if (com->sum_ways > 1)
 		sort_ways_in_combination(com, tab);
+	print_after_combo_sorting(com->way_combo, tab); // test
+	race = fill_in_race_struct(com, tab, map);
 
-
-	ft_printf("\n -------------------------------------- \n"); // test
-	ft_printf("way combination\n");
-	while (com->way_combo[i] != -1)
-	{
-		ft_printf("%d ", com->way_combo[i++]);
-	}
-	ft_printf("\n");
-	while (j < i)
-	{
-		ft_printf("%d ", tab[2][com->way_combo[j]]);
-		j++;
-	}
+	delete_race_struct(race, com->sum_ways);
 }

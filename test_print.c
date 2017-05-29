@@ -89,3 +89,23 @@ void 	print_combo(t_combo *com)
 	ft_printf("index: %d\n", com->index);
 	ft_printf("ant num: %d\n", com->ant_num);
 }
+
+void	print_after_combo_sorting(int *combo, int **tab)
+{
+	int 	i = 0;
+	int 	j = 0;
+
+	ft_printf("\n -------------------------------------- \n"); // test
+	ft_printf("way combination\n");
+	while (combo[i] != -1)
+	{
+		ft_printf("%d ", combo[i++]);
+	}
+	ft_printf("\n");
+	while (j < i)
+	{
+		ft_printf("%d ", tab[2][combo[j]]);
+		j++;
+	}
+	ft_printf("\n");
+}

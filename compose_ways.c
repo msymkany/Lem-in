@@ -141,4 +141,6 @@ void		compose_ways(t_map *map)
 		ants_race(map, com, tab);
 	}
 	free_tabs(tab, combo, map->ways->num);
+	free(com->way_combo);
+	free(com);
 }

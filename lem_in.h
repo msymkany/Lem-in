@@ -73,6 +73,13 @@ typedef struct		s_map
 	t_way	*ways;
 }					t_map;
 
+typedef struct		s_race
+{
+	int 		sum_steps;
+	int			*ants;
+	char 		**rooms;
+}					t_race;
+
 /*
 ** validation
 */
@@ -99,6 +106,7 @@ void		compose_ways(t_map *map);
 t_combo		*find_shortest_way(int **tab, int l, int ants);
 void		find_best_combo(int **tab, int **combo, t_map *map, t_combo *com);
 void		ants_race(t_map *map, t_combo *com, int **tab);
+t_race		**fill_in_race_struct(t_combo *com, int **tab, t_map *map);
 /*
 ** managing structures
 */
@@ -110,6 +118,7 @@ void		push_to_way(t_way **head);
 int			**fill_in_tab(t_map *map);
 int 		**init_combo_matrix(int	ways);
 void		free_tabs(int **tab, int **combo, int l);
+void		delete_race_struct(t_race **race, int sum_ways);
 void		ft_error(char *str);
 
 // test
@@ -119,5 +128,6 @@ void		print_rooms(t_room *head);
 void		print_way(t_way *head);
 void		print_int_arr(int **map, int row, int col);
 void		print_combo(t_combo *com);
+void		print_after_combo_sorting(int *combo, int **tab);
 
 #endif
