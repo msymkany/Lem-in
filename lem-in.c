@@ -62,7 +62,7 @@ int 	main(void)
 //	else
 //		ants_race(map);
 	delete_structure(&map);
-	while (1)
-		;
+//	while (1)
+//		;
 	return (0);
 }

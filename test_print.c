@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "lem_in.h"
 
 void	print_arr(char **map, int row)
@@ -86,7 +87,7 @@ void 	print_combo(t_combo *com)
 	}
 	ft_printf("\nsum of ways: %d\n", com->sum_ways);
 	ft_printf("sum of steps: %d\n", com->sum_steps);
-	ft_printf("index: %d\n", com->index);
+	printf("index: %f\n", com->index);
 	ft_printf("ant num: %d\n", com->ant_num);
 }
 

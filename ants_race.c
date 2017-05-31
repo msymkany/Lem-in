@@ -62,12 +62,18 @@ void		sort_ways_in_combination(t_combo *com, int **tab)
 void		ants_race(t_map *map, t_combo *com, int **tab)
 {
 	t_race		**race;
+	int 		ant;
 // tab[2][0] = 6; //test
 //	tab[2][3] = 3; //test
+	ant = 1;
 	if (com->sum_ways > 1)
 		sort_ways_in_combination(com, tab);
 	print_after_combo_sorting(com->way_combo, tab); // test
 	race = fill_in_race_struct(com, tab, map);
+	while (ant <= map->ants_num)
+	{
 
+		ant++;
+	}
 	delete_race_struct(race, com->sum_ways);
 }

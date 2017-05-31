@@ -59,7 +59,7 @@ typedef struct		s_combo
 	int				*way_combo;
 	int				sum_ways;
 	int 			sum_steps;
-	int 			index;
+	float			index;
 	int 			ant_num;
 }					t_combo;
 
@@ -77,6 +77,7 @@ typedef struct		s_race
 {
 	int 		sum_steps;
 	int			*ants;
+	int			index;
 	char 		**rooms;
 }					t_race;
 

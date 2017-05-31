@@ -121,6 +121,7 @@ void		compose_ways(t_map *map)
 
 	i = 0;
 	tab = fill_in_tab(map);
+	combo = NULL;
 	print_int_arr(tab, 3, map->ways->num + 1);   // test
 	com = find_shortest_way(tab, map->ways->num, map->ants_num);
 	ft_printf("shortest way %d\n", com->way_combo[0]); // test

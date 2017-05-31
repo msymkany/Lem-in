@@ -15,10 +15,10 @@
 int			find_index(t_combo *set, int steps, int way, int s)
 {
 	int 	new_step_sum;
-	int 	new_index;
+	float 	new_index;
 
 	new_step_sum = set->sum_steps + steps;
-	new_index = (new_step_sum + set->ant_num) / (set->sum_ways + 1);
+	new_index = ((float)new_step_sum + (float)set->ant_num) / ((float)set->sum_ways + 1);
 	if (new_index < set->index)
 	{
 		set->way_combo[s] = way;
@@ -64,9 +64,11 @@ t_combo		*find_combo(int **tab, int **combo, int i, t_combo *set)
 	set->way_combo[1] = combo[i][0];
 	set->sum_ways = 2;
 	set->sum_steps = tab[2][i] + tab[2][combo[i][0]];
-	set->index = (set->sum_steps + set->ant_num) / 2;
+	set->index = ((float)set->sum_steps + (float)set->ant_num) / 2;
 	while (combo[i][j] != -1)
 	{
+		if (set->sum_ways == set->ant_num)		//test
+			break;
 		current = combo[i][j];
 		if (check_intersection(combo, set->way_combo, s, combo[i][j]))
 		{
@@ -108,7 +110,7 @@ void		find_best_combo(int **tab, int **combo, t_map *map, t_combo *com)
 		ft_error("malloc error, no allocation");
 	set->way_combo = ft_int_strnew(map->ways->num + 2, -1);
 	set->ant_num = map->ants_num;
-	while (i <= map->ways->num)
+	while (i <= map->ways->num)  //&& com->sum_ways != map->ants_num)
 	{
 		if (combo[i])
 		{
