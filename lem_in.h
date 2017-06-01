@@ -107,6 +107,7 @@ void		compose_ways(t_map *map);
 t_combo		*find_shortest_way(int **tab, int l, int ants);
 void		find_best_combo(int **tab, int **combo, t_map *map, t_combo *com);
 void		ants_race(t_map *map, t_combo *com, int **tab);
+void		sort_ways_in_combination(t_combo *com, int **tab);
 t_race		**fill_in_race_struct(t_combo *com, int **tab, t_map *map);
 /*
 ** managing structures

@@ -12,57 +12,85 @@
 
 #include "lem_in.h"
 
-void		start_end_go(t_map *map)
-{
-	size_t		i;
-	t_room		*ptr;
-
-	ptr = map->rooms;
-	while (ptr)
-	{
-		if (ptr->num == map->end)
-			break ;
-	}
-	i = 1;
-	while (i <= map->ants_num)
-	{
-		ft_printf("L%d-%s", i, ptr->name);
-		(i == map->ants_num) ? (ft_printf("\n")) : (ft_printf(" "));
-		i++;
-	}
-}
-
-void		sort_ways_in_combination(t_combo *com, int **tab)
+int 		push_ants(t_race **race, int sum_ways, int id_ant)
 {
 	int		i;
-	int 	j;
-	int 	way_1;
-	int 	way_2;
 
-	i = 1;
-	j = -1;
-	while (i < com->sum_ways)
+	i = 0;
+	if (id_ant == 1)
 	{
-		way_1 = com->way_combo[i - 1];
-		way_2 = com->way_combo[i];
-		if (tab[2][way_2] < tab[2][way_1])
+		ft_printf("L1-%s", race[i]->rooms[i]);
+		race[i++]->ants[0] = id_ant++;
+	}
+	while (i < sum_ways)
+	{
+		ft_printf(" L%d-%s", id_ant, race[i]->rooms[0]);
+		race[i++]->ants[0] = id_ant++;
+//		i++;
+	}
+	return (id_ant);
+}
+
+int			move_ants(t_race **race)
+{
+	int 	i;
+	int 	j;
+	int 	move;
+
+	i = 0;
+	move = 0;
+	while (race[i])
+	{
+		j = race[i]->sum_steps - 2;
+		if (race[i]->ants[j])
 		{
-			j = com->way_combo[i];
-			com->way_combo[i] = com->way_combo[i - 1];
-			com->way_combo[i - 1] = j;
+			ft_printf("L%d-%s", race[i]->ants[j], race[i]->rooms[j + 1]);
+			race[i]->ants[j] = 0;
+			move++;
+		}
+		while (--j >= 0)
+		{
+			if (race[i]->ants[j])
+			{
+				ft_printf(" L%d-%s", race[i]->ants[j], race[i]->rooms[j + 1]);
+				race[i]->ants[j + 1] = race[i]->ants[j];
+				move++;
+			}
 		}
 		i++;
 	}
-	if (j > -1)
-		sort_ways_in_combination(com, tab);
-	else
+	return (move);
+}
+
+void		ants_start(t_race **race, int sum_ways, int sum_ants, int id_ant)
+{
+	int 		stop_ants;
+
+	if (sum_ants <= 0)
 		return ;
+	else
+	{
+		stop_ants = ((sum_ants - race[sum_ways - 1]->index - 1) / sum_ways);
+		ft_printf("stop_ants: %d\n", stop_ants);		//test
+
+		while (stop_ants-- >= 0)
+		{
+			if (id_ant > 1)
+				move_ants(race);
+			id_ant = push_ants(race, sum_ways, id_ant);
+			ft_printf("\n");
+			if (stop_ants == -1)
+				sum_ants = sum_ants - id_ant + 1;
+		}
+		ants_start(race, --sum_ways, sum_ants, id_ant);
+	}
 }
 
 void		ants_race(t_map *map, t_combo *com, int **tab)
 {
 	t_race		**race;
 	int 		ant;
+
 // tab[2][0] = 6; //test
 //	tab[2][3] = 3; //test
 	ant = 1;
@@ -70,10 +98,6 @@ void		ants_race(t_map *map, t_combo *com, int **tab)
 		sort_ways_in_combination(com, tab);
 	print_after_combo_sorting(com->way_combo, tab); // test
 	race = fill_in_race_struct(com, tab, map);
-	while (ant <= map->ants_num)
-	{
-
-		ant++;
-	}
+//	ants_start(race, com->sum_ways, map->ants_num, 1);
 	delete_race_struct(race, com->sum_ways);
 }
