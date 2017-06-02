@@ -58,12 +58,12 @@ int 	main(void)
 //	print_input(in);
 	if (map->links[map->start][map->end] == '1')
 		start_end_go(map);
-	else if (map->ways->num)
+	else //if (map->ways->num)
 		compose_ways(map);
 //	else
 //		ants_race(map);
 	delete_structure(&map);
-	while (1)
-		;
+//	while (1)
+//		;
 	return (0);
 }

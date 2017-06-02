@@ -26,7 +26,6 @@ int 		push_ants(t_race **race, int sum_ways, int id_ant)
 	{
 		ft_printf(" L%d-%s", id_ant, race[i]->rooms[0]);
 		race[i++]->ants[0] = id_ant++;
-//		i++;
 	}
 	return (id_ant);
 }
@@ -49,9 +48,9 @@ int			move_ants(t_race **race)
 				if (move)
 				{
 					ft_printf(" ");
-					race[i]->ants[j + 1] = race[i]->ants[j];
 				}
 				ft_printf("L%d-%s", race[i]->ants[j], race[i]->rooms[j + 1]);
+				race[i]->ants[j + 1] = race[i]->ants[j];
 				race[i]->ants[j] = 0;
 				move++;
 			}
@@ -93,11 +92,9 @@ void		ants_start(t_race **race, int sum_ways, int sum_ants, int id_ant)
 void		ants_race(t_map *map, t_combo *com, int **tab)
 {
 	t_race		**race;
-	int 		ant;
 
 // tab[2][0] = 6; //test
 //	tab[2][3] = 3; //test
-	ant = 1;
 	if (com->sum_ways > 1)
 		sort_ways_in_combination(com, tab);
 	print_after_combo_sorting(com->way_combo, tab); // test
