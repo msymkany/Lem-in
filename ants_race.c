@@ -41,19 +41,17 @@ int			move_ants(t_race **race)
 	move = 0;
 	while (race[i])
 	{
-		j = race[i]->sum_steps - 2;
-		if (race[i]->ants[j])
-		{
-			ft_printf("L%d-%s", race[i]->ants[j], race[i]->rooms[j + 1]);
-			race[i]->ants[j] = 0;
-			move++;
-		}
+		j = race[i]->sum_steps - 1;
 		while (--j >= 0)
 		{
 			if (race[i]->ants[j])
 			{
-				ft_printf(" L%d-%s", race[i]->ants[j], race[i]->rooms[j + 1]);
-				race[i]->ants[j + 1] = race[i]->ants[j];
+				if (move)
+				{
+					ft_printf(" ");
+					race[i]->ants[j + 1] = race[i]->ants[j];
+				}
+				ft_printf("L%d-%s", race[i]->ants[j], race[i]->rooms[j + 1]);
 				race[i]->ants[j] = 0;
 				move++;
 			}
@@ -76,7 +74,7 @@ void		ants_start(t_race **race, int sum_ways, int sum_ants, int id_ant)
 	}
 	else
 	{
-		stop_ants = ((sum_ants - race[sum_ways - 1]->index + 1) / sum_ways); // problems here
+		stop_ants = ((sum_ants - race[sum_ways - 1]->index) / sum_ways); // problems here
 		ft_printf("stop_ants: %d\n", stop_ants);		//test
 
 		while (stop_ants-- > 0)

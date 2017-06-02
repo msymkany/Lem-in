@@ -51,7 +51,9 @@ void		write_way(t_map *map)
 	}
 	map->ways->second = map->ways->steps[1];
 	map->ways->penalt = map->ways->steps[l - 1];
-
+//	g_way++;
+//	if (g_way / 10 == 0)							//test
+//		ft_printf("Found %d ways\n", g_way);
 //	print_arr(map->links, map->rooms->num + 1);   //test
 //	ft_printf("\n -------------------------------------- \n"); //test
 }

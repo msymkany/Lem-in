@@ -122,7 +122,7 @@ t_race		**fill_in_race_struct(t_combo *com, int **tab, t_map *map)
 			ft_error("malloc error, no allocation");
 		race[i]->sum_steps = tab[2][com->way_combo[i]];
 		race[i]->ants = ft_int_strnew(race[i]->sum_steps, 0);
-		race[i]->index = race[i]->sum_steps - len_0 + i;
+		race[i]->index = race[i]->sum_steps - len_0;	// index fe
 		race[i]->rooms = fill_in_room_names(map, com->way_combo[i],
 						race[i]->sum_steps);
 		ft_printf("number of way: %d\n", com->way_combo[i]); // test

@@ -50,6 +50,7 @@ int 	main(void)
 	t_input		*in;
 	t_map		*map;
 
+//	g_way = 0;
 	in = NULL;
 	map = NULL;
 	init_structure(&map);
@@ -62,7 +63,7 @@ int 	main(void)
 //	else
 //		ants_race(map);
 	delete_structure(&map);
-//	while (1)
-//		;
+	while (1)
+		;
 	return (0);
 }

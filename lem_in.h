@@ -29,6 +29,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+int 				g_way;
+
 typedef struct 		s_input
 {
 	char 			*line;
