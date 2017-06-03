@@ -62,9 +62,10 @@ int			find_ways(t_map *map, int curr, int n, int max)
 {
 	int		i;
 
+	ft_printf("seg\n");
 	i = 0;
-//	if (map->ways && map->ways->num == max)
-//		return (0);
+	if (map->recursion++ >= 100000)
+		return (0);
 	if (curr == map->end)
 	{
 		new_way(map, n);

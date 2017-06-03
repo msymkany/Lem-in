@@ -20,6 +20,7 @@ void	init_structure(t_map **map)
 	(*map)->ants_num = 0;
 	(*map)->start = -1;
 	(*map)->end = -1;
+	(*map)->recursion = 0; ///test
 	(*map)->rooms = NULL;
 	(*map)->links = NULL;
 	(*map)->ways = NULL;

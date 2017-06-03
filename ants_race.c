@@ -46,9 +46,7 @@ int			move_ants(t_race **race)
 			if (race[i]->ants[j])
 			{
 				if (move)
-				{
 					ft_printf(" ");
-				}
 				ft_printf("L%d-%s", race[i]->ants[j], race[i]->rooms[j + 1]);
 				race[i]->ants[j + 1] = race[i]->ants[j];
 				race[i]->ants[j] = 0;
@@ -74,8 +72,7 @@ void		ants_start(t_race **race, int sum_ways, int sum_ants, int id_ant)
 	else
 	{
 		stop_ants = ((sum_ants - race[sum_ways - 1]->index) / sum_ways); // problems here
-		ft_printf("stop_ants: %d\n", stop_ants);		//test
-
+//		ft_printf("stop_ants: %d\n", stop_ants);		//test
 		while (stop_ants-- > 0)
 		{
 			if (id_ant > 1)
@@ -93,8 +90,6 @@ void		ants_race(t_map *map, t_combo *com, int **tab)
 {
 	t_race		**race;
 
-// tab[2][0] = 6; //test
-//	tab[2][3] = 3; //test
 	if (com->sum_ways > 1)
 		sort_ways_in_combination(com, tab);
 	print_after_combo_sorting(com->way_combo, tab); // test

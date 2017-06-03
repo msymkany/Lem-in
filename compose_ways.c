@@ -59,7 +59,6 @@ void		find_way_combination(t_map *map, int id, int **tab, int **combo)
 	int 	j;
 	int 	l;
 
-//	i = id + 1;
 	i = 0;
 	j = 0;
 	l = 0;
@@ -108,6 +107,8 @@ t_combo		*find_shortest_way(int **tab, int l, int ants)
 		}
 		i++;
 	}
+	if (ants >= 2147483647 - com->sum_steps)
+		ants = ants / 2;
 	com->index = ants + com->sum_steps;
 	return (com);
 }
@@ -122,9 +123,9 @@ void		compose_ways(t_map *map)
 	i = 0;
 	tab = fill_in_tab(map);
 	combo = NULL;
-	print_int_arr(tab, 3, map->ways->num + 1);   // test
+//	print_int_arr(tab, 3, map->ways->num + 1);   // test
 	com = find_shortest_way(tab, map->ways->num, map->ants_num);
-	ft_printf("shortest way %d\n", com->way_combo[0]); // test
+//	ft_printf("shortest way %d\n", com->way_combo[0]); // test
 	if (map->ants_num == 1)
 		ants_race(map, com, tab);
 	else
@@ -136,7 +137,7 @@ void		compose_ways(t_map *map)
 			find_way_combination(map, i, tab, combo);
 			i++;
 		}
-		print_int_arr(combo, map->ways->num + 1, map->ways->num + 1);   // test
+//		print_int_arr(combo, map->ways->num + 1, map->ways->num + 1);   // test
 		find_best_combo(tab, combo, map, com);
 		print_combo(com);
 		ants_race(map, com, tab);

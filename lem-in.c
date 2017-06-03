@@ -26,7 +26,7 @@ void		print_input(t_input *head)
 		ptr = ptr->next;
 		i++;
 	}
-	while (i--)
+	while (i-- > 0)
 	{
 		ptr = head;
 		j = i;
@@ -55,7 +55,7 @@ int 	main(void)
 	map = NULL;
 	init_structure(&map);
 	read_input(&in, map);
-//	print_input(in);
+	print_input(in);
 	if (map->links[map->start][map->end] == '1')
 		start_end_go(map);
 	else //if (map->ways->num)

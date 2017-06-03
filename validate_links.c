@@ -82,9 +82,6 @@ static void		check_start_end_links(char *start, char *end)
 
 static int			check_way_existance(t_map *map)
 {
-	int		max_ways;
-
-	max_ways = (map->rooms->num + 1) * (map->rooms->num + 1);
 	if (map->links[map->start][map->end] == '1')
 		return (1);
 	else
@@ -124,7 +121,7 @@ void			validate_links(t_input **in, t_map *map)
 	check_start_end_links(map->links[map->start], map->links[map->end]);
 	if (!check_way_existance(map))
 		ft_error("no way from start to end");
-//	print_way(map->ways); //test
+	print_way(map->ways); //test
 //	write(1, "OK links\n", 9); // test
 //	print_arr(map->links, map->rooms->num + 1);
 //	print_input(*in);  // test

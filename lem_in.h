@@ -70,6 +70,7 @@ typedef struct		s_map
 	int		ants_num;
 	int		start;
 	int 	end;
+	int 	recursion; /// test
 	t_room	*rooms;
 	char 	**links;
 	t_way	*ways;

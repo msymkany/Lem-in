@@ -14,17 +14,19 @@
 
 int			find_index(t_combo *set, int steps, int way, int s)
 {
-	int 	new_step_sum;
+	long long 	new_step_and_ants;
 	float 	new_index;
 
-	new_step_sum = set->sum_steps + steps;
-	new_index = ((float)new_step_sum + (float)set->ant_num) / ((float)set->sum_ways + 1);
+	new_step_and_ants = set->sum_steps + steps + (long long)set->ant_num;
+	if (new_step_and_ants >= 2147483647)
+		new_step_and_ants = new_step_and_ants / 2;
+	new_index = (float)new_step_and_ants / ((float)set->sum_ways + 1);
 	if (new_index < set->index)
 	{
 		set->way_combo[s] = way;
 		set->index = new_index;
 		set->sum_ways += 1;
-		set->sum_steps = new_step_sum;
+		set->sum_steps = set->sum_steps + steps;
 		return (++s);
 	}
 	return (s);
@@ -57,6 +59,7 @@ t_combo		*find_combo(int **tab, int **combo, int i, t_combo *set)
 	int 	j;
 	int 	s;
 	int 	current;
+	long long new_step_and_ants;
 
 	j = 1;
 	s = 2;
@@ -64,7 +67,10 @@ t_combo		*find_combo(int **tab, int **combo, int i, t_combo *set)
 	set->way_combo[1] = combo[i][0];
 	set->sum_ways = 2;
 	set->sum_steps = tab[2][i] + tab[2][combo[i][0]];
-	set->index = ((float)set->sum_steps + (float)set->ant_num) / 2;
+	if ((new_step_and_ants = set->sum_steps + (long long)set->ant_num) >= 2147483647)
+		new_step_and_ants = new_step_and_ants / 2;
+//	set->index = ((float)set->sum_steps + (float)set->ant_num) / 2;
+	set->index = (float)new_step_and_ants / 2;
 	while (combo[i][j] != -1)
 	{
 		if (set->sum_ways == set->ant_num)		//test
