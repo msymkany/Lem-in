@@ -53,6 +53,14 @@ int 		check_way_intersection(t_map *map, int x, int y)
 	return (i);
 }
 
+void		write_way_combination(int **combo, int id, int i, int ways_num)
+{
+	if (!combo[id])
+		combo[id] = ft_int_strnew((size_t)ways_num, -1);
+	if (!combo[i])
+		combo[i] = ft_int_strnew((size_t)ways_num, -1);
+}
+
 void		find_way_combination(t_map *map, int id, int **tab, int **combo)
 {
 	int 	i;
@@ -68,10 +76,11 @@ void		find_way_combination(t_map *map, int id, int **tab, int **combo)
 		{
 			if (check_way_intersection(map, id, i))
 			{
-				if (!combo[id])
-					combo[id] = ft_int_strnew((size_t)map->ways->num + 1, -1);
-				if (!combo[i])
-					combo[i] = ft_int_strnew((size_t)map->ways->num + 1, -1);
+				write_way_combination(combo, id, i, map->ways->num + 1);
+//				if (!combo[id])
+//					combo[id] = ft_int_strnew((size_t)map->ways->num + 1, -1);
+//				if (!combo[i])
+//					combo[i] = ft_int_strnew((size_t)map->ways->num + 1, -1);
 				combo[id][j++] = i;
 				if (i > id)
 				{

@@ -77,6 +77,23 @@ void				check_room_format(t_map *map, char *line)
 		ft_error("wrong format of room coordinates");
 }
 
+void				check_rooms(t_input **in, t_map *map, char **line)
+{
+	if ((*line)[0] == '#' && (*line)[1] == '#')
+	{
+		check_command(line, map, in);
+		push_to_input(in, *line);
+	}
+	else if (*line[0] == '#')
+		push_to_input(in, *line);
+	else
+	{
+		check_room_format(map, *line);
+		get_room_num(map);
+		push_to_input(in, *line);
+	}
+}
+
 void				validate_rooms(t_input **in, t_map *map)
 {
 	char		*line;
@@ -84,19 +101,7 @@ void				validate_rooms(t_input **in, t_map *map)
 	line = NULL;
 	while (get_next_line(0, &line) && (line[0] == '#' || check_spaces(line)))
 	{
-		if (line[0] == '#' && line[1] == '#')
-		{
-			check_command(&line, map, in);
-			push_to_input(in, line);
-		}
-		else if (line[0] == '#')
-			push_to_input(in, line);
-		else
-		{
-			check_room_format(map, line);
-			get_room_num(map);
-			push_to_input(in, line);
-		}
+		check_rooms(in, map, &line);
 		if (map->rooms && map->rooms->next)
 		{
 			check_room_name_dub(map);
@@ -110,12 +115,6 @@ void				validate_rooms(t_input **in, t_map *map)
 		ft_error("no rooms");
 	if (map->start == -1 || map->end == -1)
 		ft_error("no start or end room");
-	push_to_input(in, line); // last one goes to links
+	push_to_input(in, line);
 	ft_strdel(&line);
-
-	write(1, "OK room\n", 8); // test
-	ft_printf("start %d\n", map->start); // test
-	ft_printf("end %d\n", map->end); // test
-	print_rooms(map->rooms);
-// 	print_input(*in);  // test
 }

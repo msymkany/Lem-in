@@ -25,7 +25,7 @@ void		print_input(t_input *head)
 		ptr = ptr->next;
 		i++;
 	}
-	while (--i)
+	while (i-- > 0)
 	{
 		ptr = head;
 		j = i;

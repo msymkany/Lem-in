@@ -58,18 +58,15 @@ void		write_way(t_map *map)
 //	ft_printf("\n -------------------------------------- \n"); //test
 }
 
-int			find_ways(t_map *map, int curr, int n, int max, int way_sum)
+int			find_ways(t_map *map, int curr, int n, int max)
 {
 	int		i;
 
-//	ft_printf("seg\n");
 	i = 0;
-	if (map->recursion >= 3)
+	if (n > 3 && map->recursion >= 3)
 	{
 		return (0);
 	}
-//	if (map->recursion++ >= 100000)
-//		return (0);
 	if (curr == map->end)
 	{
 		new_way(map, n);
@@ -86,13 +83,12 @@ int			find_ways(t_map *map, int curr, int n, int max, int way_sum)
 		if (map->links[curr][i] == '1' && !(ft_strchr(map->links[i], '#')))
 		{
 			map->links[curr][i] = '#';
-			if (!find_ways(map, i, n + 1, max, way_sum))
+			if (!find_ways(map, i, n + 1, max))
 				map->links[curr][i] = '1';
 			else
 			{
 				write_way(map);
 				map->links[curr][i] = '1';
-				way_sum++;  ///test
 			}
 		}
 		if (n == 3)

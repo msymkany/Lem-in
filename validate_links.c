@@ -86,7 +86,7 @@ static int			check_way_existance(t_map *map)
 		return (1);
 	else
 	{
-		find_ways(map, map->start, 1, 0, 0);
+		find_ways(map, map->start, 1, 0);
 		if (map->ways)
 			return (1);
 	}
@@ -122,7 +122,7 @@ void			validate_links(t_input **in, t_map *map)
 	if (!check_way_existance(map))
 		ft_error("no way from start to end");
 	print_way(map->ways); //test
-//	write(1, "OK links\n", 9); // test
+	write(1, "OK links\n", 9); // test
 //	print_arr(map->links, map->rooms->num + 1);
 //	print_input(*in);  // test
 }
