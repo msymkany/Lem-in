@@ -86,7 +86,7 @@ static int			check_way_existance(t_map *map)
 		return (1);
 	else
 	{
-		find_ways(map, map->start, 1, 0);
+		find_ways(map, map->start, 1, 0, 0);
 		if (map->ways)
 			return (1);
 	}

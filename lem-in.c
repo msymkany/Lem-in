@@ -19,14 +19,13 @@ void		print_input(t_input *head)
 	int 		j;
 
 	i = 0;
-	j = 0;
 	ptr = head;
 	while (ptr)
 	{
 		ptr = ptr->next;
 		i++;
 	}
-	while (i-- > 0)
+	while (--i)
 	{
 		ptr = head;
 		j = i;
@@ -60,8 +59,6 @@ int 	main(void)
 		start_end_go(map);
 	else //if (map->ways->num)
 		compose_ways(map);
-//	else
-//		ants_race(map);
 	delete_structure(&map);
 //	while (1)
 //		;
