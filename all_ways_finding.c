@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-void		new_way(t_map *map, int n)
+int		new_way(t_map *map, int n)
 {
 	push_to_way(&map->ways);
 	map->ways->length = n;
@@ -23,6 +23,8 @@ void		new_way(t_map *map, int n)
 	map->ways->penalt = 0;
 	if (map->ways->next)
 		map->ways->num = map->ways->next->num + 1;
+	map->recursion++;
+	return (1);
 }
 
 void		write_way(t_map *map)
@@ -58,42 +60,38 @@ void		write_way(t_map *map)
 //	ft_printf("\n -------------------------------------- \n"); //test
 }
 
+void		check_end_room(t_map *map, int curr, int *max, int *i)
+{
+	if (map->links[curr][map->end] == '1' && !(*max))
+	{
+		(*i) = map->end;
+		(*max) = 1;
+	}
+}
+
 int			find_ways(t_map *map, int curr, int n, int max)
 {
 	int		i;
 
-	i = 0;
+	i = -1;
 	if (n > 3 && map->recursion >= 3)
-	{
 		return (0);
-	}
 	if (curr == map->end)
+		return (new_way(map, n));
+	while (map->links[curr][++i])
 	{
-		new_way(map, n);
-		map->recursion++;
-		return (1);
-	}
-	while (map->links[curr][i])
-	{
-		if (map->links[curr][map->end] == '1' && !max)
-		{
-			i = map->end;
-			max = 1;
-		}
+		check_end_room(map, curr, &max, &i);
+		if (n == 3)
+			map->recursion = 0;
 		if (map->links[curr][i] == '1' && !(ft_strchr(map->links[i], '#')))
 		{
 			map->links[curr][i] = '#';
 			if (!find_ways(map, i, n + 1, max))
-				map->links[curr][i] = '1';
+					;
 			else
-			{
 				write_way(map);
-				map->links[curr][i] = '1';
-			}
+			map->links[curr][i] = '1';
 		}
-		if (n == 3)
-			map->recursion = 0;
-		i++;
 	}
 	return (0);
 }

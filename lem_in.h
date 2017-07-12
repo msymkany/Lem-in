@@ -70,7 +70,7 @@ typedef struct		s_map
 	int		ants_num;
 	int		start;
 	int 	end;
-	int 	recursion; /// test
+	int 	recursion;
 	t_room	*rooms;
 	char 	**links;
 	t_way	*ways;
@@ -103,7 +103,7 @@ void		init_adjacency_matrix(t_map *map);
 ** main algorithm
 */
 int			find_ways(t_map *map, int curr, int n, int max);
-void		new_way(t_map *map, int n);
+int			new_way(t_map *map, int n);
 void		write_way(t_map *map);
 void		start_end_go(t_map *map);
 void		compose_ways(t_map *map);
